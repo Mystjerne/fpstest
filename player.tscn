@@ -1,8 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://br01chminlckq"]
+[gd_scene load_steps=11 format=3 uid="uid://br01chminlckq"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_502fm"]
+[ext_resource type="ArrayMesh" uid="uid://x4gr370fo1qy" path="res://models/knife_sharp.obj" id="2_xfkgw"]
+[ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="3_bk6j6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ua1y4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6fx42"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_14022"]
+
+[sub_resource type="Animation" id="Animation_edg6o"]
+resource_name = "knife_stab"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSharp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.451478), Vector3(0.75, -0.375, -1.41927), Vector3(0.75, -0.375, -0.451478)]
+}
+
+[sub_resource type="Animation" id="Animation_j8iug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSharp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -1.41927)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.75)]
+}
+
+[sub_resource type="Animation" id="Animation_sncsf"]
+resource_name = "shotgun_blast"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.75), Vector3(0.75, -0.449403, -0.645728), Vector3(0.75, -0.375, -0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.169372, 3.12275, 0.0031761), Vector3(-1.22173, 3.1189, 0.0122173), Vector3(-0.169372, 3.12275, 0.0031761)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lyqgl"]
+_data = {
+"RESET": SubResource("Animation_j8iug"),
+"knife_stab": SubResource("Animation_edg6o"),
+"shotgun_blast": SubResource("Animation_sncsf")
+}
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.932028, 0)
@@ -11,3 +97,28 @@ script = ExtResource("1_502fm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0508093, -0.219376, 0.108806)
 shape = SubResource("CapsuleShape3D_ua1y4")
+
+[node name="Capsule3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0532225, -0.230096, 0.115496)
+mesh = SubResource("CapsuleMesh_6fx42")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Capsule3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.15, 0.5, -0.5)
+mesh = SubResource("SphereMesh_14022")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Capsule3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.15, 0.5, -0.5)
+mesh = SubResource("SphereMesh_14022")
+
+[node name="KnifeSharp" type="MeshInstance3D" parent="."]
+transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -1.41927)
+mesh = ExtResource("2_xfkgw")
+
+[node name="Shotgun" type="MeshInstance3D" parent="."]
+transform = Transform3D(-19.9965, -1.39698e-08, 0.371386, 0.0626129, 19.7137, 3.37127, -0.36607, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+mesh = ExtResource("3_bk6j6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lyqgl")
+}
