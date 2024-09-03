@@ -1,36 +1,182 @@
-[gd_scene load_steps=3 format=3 uid="uid://rcr1bd5815dc"]
+[gd_scene load_steps=6 format=3 uid="uid://rcr1bd5815dc"]
 
 [ext_resource type="Texture2D" uid="uid://demcppgtewimp" path="res://icons/Icon29.png" id="1_7dqt4"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_r0xa2"]
+[ext_resource type="Script" path="res://ui.gd" id="1_l3pa8"]
+[ext_resource type="Texture2D" uid="uid://v2odbyoo484o" path="res://icons/Icon38.png" id="2_0d3jd"]
+[ext_resource type="Script" path="res://StatLineEdit.gd" id="2_hjeqd"]
+[ext_resource type="Script" path="res://CooldownHandler.gd" id="3_3usx4"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_l3pa8")
 
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "HELLO I AM A BUTTON"
+[node name="DebugPanel" type="Panel" parent="."]
+offset_right = 247.0
+offset_bottom = 378.0
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-anchors_preset = 7
+[node name="PanelBoxContainer" type="BoxContainer" parent="DebugPanel"]
+layout_mode = 0
+offset_right = 248.0
+offset_bottom = 377.0
+vertical = true
+
+[node name="PlayerStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+text = "Player Stats:"
+horizontal_alignment = 1
+
+[node name="StrengthBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StrengthBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Strength"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StrengthBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_hjeqd")
+
+[node name="ReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Reload_spd"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="CurrentStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+text = "Current Weapon Stats:"
+horizontal_alignment = 1
+
+[node name="WeaponDmgBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/WeaponDmgBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Weapon_dmg"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/WeaponDmgBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="RangeContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/RangeContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Range"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/RangeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="EqBoxContainer" type="BoxContainer" parent="."]
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.988
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -309.0
-offset_top = -40.0
-offset_right = 309.0
+anchor_bottom = 0.988
+offset_left = -176.0
+offset_top = -96.224
+offset_right = 188.0
+offset_bottom = -8.224
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("3_3usx4")
 
-[node name="Icon29" type="Sprite2D" parent="BoxContainer"]
+[node name="RangedTextureRect" type="TextureRect" parent="EqBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("1_7dqt4")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="BoxContainer"]
+[node name="RangedCooldownLabel" type="Label" parent="EqBoxContainer/RangedTextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_right = 0.511
+offset_left = -15.968
+offset_top = -32.0
+offset_right = 13.032
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="PotionTextureRect" type="TextureRect" parent="EqBoxContainer"]
 layout_mode = 2
-min_value = 50.0
-value = 50.0
-fill_mode = 2
-texture_under = SubResource("ImageTexture_r0xa2")
-texture_progress = ExtResource("1_7dqt4")
-tint_under = Color(1, 0.0745098, 0.560784, 0.890196)
+size_flags_horizontal = 3
+texture = ExtResource("2_0d3jd")
+
+[node name="PotionCooldownLabel" type="Label" parent="EqBoxContainer/PotionTextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_right = 0.511
+offset_left = -15.968
+offset_top = -32.0
+offset_right = 13.032
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="KnifeTextureRect" type="TextureRect" parent="EqBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_7dqt4")
+
+[node name="KnifeCooldownLabel" type="Label" parent="EqBoxContainer/KnifeTextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_right = 0.511
+offset_left = -15.968
+offset_top = -32.0
+offset_right = 13.032
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="MagicTextureRect" type="TextureRect" parent="EqBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_7dqt4")
+
+[node name="MagicCooldownLabel" type="Label" parent="EqBoxContainer/MagicTextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_right = 0.511
+offset_left = -15.968
+offset_top = -32.0
+offset_right = 13.032
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" method="_on_strength_edit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="." method="_on_strength_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ReloadSpdContainer/LineEdit" to="." method="_on_player_reloadspd_edit_submitted"]
