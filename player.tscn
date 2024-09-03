@@ -10,25 +10,9 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_14022"]
 
-[sub_resource type="Animation" id="Animation_edg6o"]
-resource_name = "knife_stab"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("KnifeSharp:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.75, -0.375, -0.451478), Vector3(0.75, -0.375, -1.41927), Vector3(0.75, -0.375, -0.451478)]
-}
-
 [sub_resource type="Animation" id="Animation_j8iug"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,6 +36,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.75, -0.375, -0.75)]
+}
+
+[sub_resource type="Animation" id="Animation_edg6o"]
+resource_name = "knife_stab"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSharp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.451478), Vector3(0.75, -0.375, -1.41927), Vector3(0.75, -0.375, -0.451478)]
 }
 
 [sub_resource type="Animation" id="Animation_sncsf"]
@@ -112,10 +113,11 @@ mesh = SubResource("SphereMesh_14022")
 
 [node name="KnifeSharp" type="MeshInstance3D" parent="."]
 transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -1.41927)
+visible = false
 mesh = ExtResource("2_xfkgw")
 
 [node name="Shotgun" type="MeshInstance3D" parent="."]
-transform = Transform3D(-19.9965, -1.39698e-08, 0.371386, 0.0626129, 19.7137, 3.37127, -0.36607, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9965, -8.77771e-06, 0.371437, 0.0626128, 19.7137, 3.37126, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 mesh = ExtResource("3_bk6j6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

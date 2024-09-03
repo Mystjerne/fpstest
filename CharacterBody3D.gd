@@ -1,9 +1,10 @@
 extends CharacterBody3D
-
-
 @export var  SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var sensivity = 0.3
+@export var strength = 90
+@export var reload_spd = 90
+
 var fov = false
 var lerp_speed= 1
 
@@ -11,13 +12,20 @@ var lerp_speed= 1
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _input(event):
+	if Input.is_action_just_pressed("toggle_debug"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN or Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		
 	if event is InputEventMouseMotion:
 		$Camera.rotation_degrees.x -= event.relative.y * sensivity
 		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -90, 90)
