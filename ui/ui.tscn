@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://rcr1bd5815dc"]
 
-[ext_resource type="Texture2D" uid="uid://demcppgtewimp" path="res://icons/Icon29.png" id="1_7dqt4"]
-[ext_resource type="Script" path="res://ui.gd" id="1_l3pa8"]
-[ext_resource type="Texture2D" uid="uid://v2odbyoo484o" path="res://icons/Icon38.png" id="2_0d3jd"]
-[ext_resource type="Script" path="res://StatLineEdit.gd" id="2_hjeqd"]
-[ext_resource type="Script" path="res://CooldownHandler.gd" id="3_3usx4"]
-[ext_resource type="Script" path="res://EquipmentTimer.gd" id="5_sxxab"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_l8skx"]
+[ext_resource type="Script" path="res://ui/StatLineEdit.gd" id="2_gwo1q"]
+[ext_resource type="Script" path="res://CooldownHandler.gd" id="3_nj0kt"]
+[ext_resource type="Texture2D" uid="uid://demcppgtewimp" path="res://ui/icons/Icon29.png" id="4_5t6pj"]
+[ext_resource type="Script" path="res://ui/EquipmentTimer.gd" id="5_xyv76"]
+[ext_resource type="Texture2D" uid="uid://v2odbyoo484o" path="res://ui/icons/Icon38.png" id="6_p544n"]
 
 [node name="UI" type="CanvasLayer"]
-script = ExtResource("1_l3pa8")
+script = ExtResource("1_l8skx")
 
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 247.0
@@ -36,7 +36,7 @@ text = "Strength"
 [node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StrengthBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_hjeqd")
+script = ExtResource("2_gwo1q")
 
 [node name="ReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -94,12 +94,12 @@ offset_right = 188.0
 offset_bottom = -8.224
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("3_3usx4")
+script = ExtResource("3_nj0kt")
 
 [node name="RangedTextureRect" type="TextureRect" parent="EqBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_7dqt4")
+texture = ExtResource("4_5t6pj")
 
 [node name="RangedCooldownLabel" type="Label" parent="EqBoxContainer/RangedTextureRect"]
 layout_mode = 1
@@ -117,12 +117,12 @@ theme_override_font_sizes/font_size = 50
 text = "5"
 
 [node name="RangedEqTimer" type="Timer" parent="EqBoxContainer/RangedTextureRect"]
-script = ExtResource("5_sxxab")
+script = ExtResource("5_xyv76")
 
 [node name="PotionTextureRect" type="TextureRect" parent="EqBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_0d3jd")
+texture = ExtResource("6_p544n")
 
 [node name="PotionCooldownLabel" type="Label" parent="EqBoxContainer/PotionTextureRect"]
 layout_mode = 1
@@ -140,12 +140,12 @@ theme_override_font_sizes/font_size = 50
 text = "5"
 
 [node name="PotionTimer" type="Timer" parent="EqBoxContainer/PotionTextureRect"]
-script = ExtResource("5_sxxab")
+script = ExtResource("5_xyv76")
 
 [node name="KnifeTextureRect" type="TextureRect" parent="EqBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_7dqt4")
+texture = ExtResource("4_5t6pj")
 
 [node name="KnifeCooldownLabel" type="Label" parent="EqBoxContainer/KnifeTextureRect"]
 layout_mode = 1
@@ -163,12 +163,12 @@ theme_override_font_sizes/font_size = 50
 text = "5"
 
 [node name="KnifeTimer" type="Timer" parent="EqBoxContainer/KnifeTextureRect"]
-script = ExtResource("5_sxxab")
+script = ExtResource("5_xyv76")
 
 [node name="MagicTextureRect" type="TextureRect" parent="EqBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_7dqt4")
+texture = ExtResource("4_5t6pj")
 
 [node name="MagicCooldownLabel" type="Label" parent="EqBoxContainer/MagicTextureRect"]
 layout_mode = 1
@@ -186,7 +186,7 @@ theme_override_font_sizes/font_size = 50
 text = "5"
 
 [node name="MagicTimer" type="Timer" parent="EqBoxContainer/MagicTextureRect"]
-script = ExtResource("5_sxxab")
+script = ExtResource("5_xyv76")
 
 [connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" method="_on_strength_edit_text_changed"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="." method="_on_strength_edit_submitted"]
