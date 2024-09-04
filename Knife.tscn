@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvct05xuyek4y"]
+
+[ext_resource type="ArrayMesh" uid="uid://x4gr370fo1qy" path="res://models/knife_sharp.obj" id="1_2m0au"]
+[ext_resource type="Script" path="res://Knife.gd" id="2_b2m7g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ld3qv"]
+
+[node name="KnifeSharp" type="MeshInstance3D"]
+transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -1.41927)
+mesh = ExtResource("1_2m0au")
+script = ExtResource("2_b2m7g")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.025, -7.27596e-12, 5.63887e-11, -2.32831e-10, 0.025, 4.65661e-10, -2.63753e-10, -9.31323e-10, 0.025, -2.22363e-05, 0.0398564, 0.00113918)
+shape = SubResource("SphereShape3D_ld3qv")
