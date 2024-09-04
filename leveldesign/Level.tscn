@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dru60kpstsqwb"]
+[gd_scene load_steps=13 format=3 uid="uid://c1kxcc4na4yb0"]
 
-[ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://player.tscn" id="1_7xctj"]
-[ext_resource type="PackedScene" uid="uid://rcr1bd5815dc" path="res://ui.tscn" id="1_y6gth"]
-[ext_resource type="PackedScene" uid="uid://ck3weatx4ste5" path="res://static_body_3d.tscn" id="2_doeps"]
+[ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://Player.tscn" id="1_7xctj"]
+[ext_resource type="PackedScene" uid="uid://rcr1bd5815dc" path="res://ui/ui.tscn" id="1_y6gth"]
+[ext_resource type="PackedScene" uid="uid://ck3weatx4ste5" path="res://leveldesign/Platform.tscn" id="2_doeps"]
 [ext_resource type="ArrayMesh" uid="uid://x4gr370fo1qy" path="res://models/knife_sharp.obj" id="3_fftyh"]
 [ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="4_o5plh"]
 

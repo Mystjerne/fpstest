@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://br01chminlckq"]
+[gd_scene load_steps=12 format=3 uid="uid://br01chminlckq"]
 
-[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_502fm"]
-[ext_resource type="ArrayMesh" uid="uid://x4gr370fo1qy" path="res://models/knife_sharp.obj" id="2_xfkgw"]
+[ext_resource type="Script" path="res://Player.gd" id="1_502fm"]
+[ext_resource type="PackedScene" uid="uid://bvct05xuyek4y" path="res://Knife.tscn" id="2_2drel"]
 [ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="3_bk6j6"]
+[ext_resource type="Script" path="res://Shotgun.gd" id="5_3qnhx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ua1y4"]
 
@@ -111,14 +112,12 @@ mesh = SubResource("SphereMesh_14022")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.15, 0.5, -0.5)
 mesh = SubResource("SphereMesh_14022")
 
-[node name="KnifeSharp" type="MeshInstance3D" parent="."]
-transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -1.41927)
-visible = false
-mesh = ExtResource("2_xfkgw")
+[node name="KnifeSharp" parent="." instance=ExtResource("2_2drel")]
 
 [node name="Shotgun" type="MeshInstance3D" parent="."]
-transform = Transform3D(-19.9965, -8.77771e-06, 0.371437, 0.0626128, 19.7137, 3.37126, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9965, -8.82893e-06, 0.371437, 0.0626128, 19.7137, 3.37127, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 mesh = ExtResource("3_bk6j6")
+script = ExtResource("5_3qnhx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
