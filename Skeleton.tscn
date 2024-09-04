@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjs3mscn1k1cp"]
+
+[ext_resource type="ArrayMesh" uid="uid://dwppmka5k8h2y" path="res://models/character-skeleton.obj" id="1_4iqod"]
+[ext_resource type="Script" path="res://Enemy.gd" id="2_xrk3s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jntgp"]
+size = Vector3(1, 3.52699, 1.41431)
+
+[node name="Skeleton" type="CharacterBody3D"]
+script = ExtResource("2_xrk3s")
+
+[node name="SkeletonCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91744, 0.0247803)
+shape = SubResource("BoxShape3D_jntgp")
+
+[node name="SkeletonMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = ExtResource("1_4iqod")
+script = ExtResource("2_xrk3s")
+
+[node name="Label3D" type="Label3D" parent="SkeletonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0913116, 0.914006, 0.0789077)
+billboard = 1
+text = "the real sans undertale"
