@@ -16,9 +16,15 @@ shape = SubResource("BoxShape3D_jntgp")
 [node name="SkeletonMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = ExtResource("1_4iqod")
-script = ExtResource("2_xrk3s")
 
-[node name="Label3D" type="Label3D" parent="SkeletonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0913116, 0.914006, 0.0789077)
+[node name="NameLabel" type="Label3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.456558, 5.5302, 0.394538)
 billboard = 1
 text = "the real sans undertale"
+
+[node name="HealthLabel" type="Label3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 4.45118, 0)
+billboard = 1
+text = "Health: "
+
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]

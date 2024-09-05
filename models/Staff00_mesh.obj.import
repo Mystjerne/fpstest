@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d4bncmgspbfom"
+path="res://.godot/imported/Staff00_mesh.obj-e1ce323e2178bdfc997fc57a8a932300.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Staff00_mesh.obj-e1ce323e2178bdfc997fc57a8a932300.mesh"]
+
+source_file="res://models/Staff00_mesh.obj"
+dest_files=["res://.godot/imported/Staff00_mesh.obj-e1ce323e2178bdfc997fc57a8a932300.mesh", "res://.godot/imported/Staff00_mesh.obj-e1ce323e2178bdfc997fc57a8a932300.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8470h063t1aw"]
+
+[ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="1_xciy7"]
+[ext_resource type="Script" path="res://Shotgun.gd" id="2_lfb0t"]
+
+[sub_resource type="Animation" id="Animation_lh8ge"]
+resource_name = "shotgun_blast"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.382148), Vector3(0.75, -0.449403, -0.645728), Vector3(0.75, -0.375, -0.382148)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.169372, 3.12275, 0.0031761), Vector3(-1.22173, 3.1189, 0.0122173), Vector3(-0.169372, 3.12275, 0.0031761)]
+}
+
+[sub_resource type="Animation" id="Animation_j3qty"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.75)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ltwmy"]
+_data = {
+"RESET": SubResource("Animation_j3qty"),
+"shotgun_blast": SubResource("Animation_lh8ge")
+}
+
+[node name="Shotgun" type="MeshInstance3D"]
+transform = Transform3D(-19.9965, -8.77305e-06, 0.371437, 0.0626128, 19.7137, 3.37126, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+mesh = ExtResource("1_xciy7")
+script = ExtResource("2_lfb0t")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 3.0268e-09, -3.72529e-09, 9.31323e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.000907462, 0.00706667, 0.0457887)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ltwmy")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(0.361221, -0.0122029, -0.00740769, 0.00670864, -0.0179065, 0.388135, -0.00689243, -0.656964, -0.0104414, 0.000887204, 0.00842689, 0.0477631)
