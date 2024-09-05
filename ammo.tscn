@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://duat571uuxb66"]
+
+[ext_resource type="ArrayMesh" uid="uid://cbpd3uuea8jcx" path="res://models/ammo_pistol.obj" id="1_74tx2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i30m7"]
+radius = 0.00862285
+
+[node name="Ammo" type="MeshInstance3D"]
+transform = Transform3D(1, 2.32831e-10, 0, 2.32831e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_74tx2")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_i30m7")

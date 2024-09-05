@@ -1,0 +1,14 @@
+# Aspose.3D Wavefront OBJ Exporter
+# Copyright 2004-2024 Aspose Pty Ltd.
+# File created: 09/05/2024 19:31:35
+
+newmtl Staff00_mat
+	Ka 0.588 0.588 0.588
+	Kd 0.588 0.588 0.588
+	Ke 0 0 0
+	illum 2
+	Ks 0.9 0.9 0.9
+	Ns 2
+	d 1
+	Tr 0
+	map_Kd C:\Dropbox\Projekty\Asset_Weapons\textures\Staff\Staff00_diff.png

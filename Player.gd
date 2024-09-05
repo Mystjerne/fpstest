@@ -6,6 +6,12 @@ const JUMP_VELOCITY = 4.5
 @export var strength = 90
 @export var reload_spd = 1
 
+@onready var knife = $Knife
+@onready var shotgun = $Shotgun
+@onready var meat = $Meat
+
+#var equipment_types = {"ranged" : knife, "potion" : meat , "melee" : knife, "magic"}
+
 var fov = false
 var lerp_speed= 1
 
@@ -31,6 +37,8 @@ func _input(event):
 		$Camera.rotation_degrees.x -= event.relative.y * sensivity
 		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -90, 90)
 		rotation_degrees.y -= event.relative.x * sensivity
+	
+	
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -61,9 +69,9 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
+#Reload level if player jumps off and hits the respawn collision box.
 func _on_area_3d_body_entered(body):
-	if body.name=="player":
-		get_tree().change_scene_to_file("res://node_3d.tscn")
+	if body.name=="Player":
+		get_tree().change_scene_to_file("res://leveldesign/Level.tscn")
 
 	pass # Replace with function body.
