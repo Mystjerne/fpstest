@@ -3,6 +3,21 @@
 [ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="1_xciy7"]
 [ext_resource type="Script" path="res://Shotgun.gd" id="2_lfb0t"]
 
+[sub_resource type="Animation" id="Animation_j3qty"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.75, -0.375, -0.75)]
+}
+
 [sub_resource type="Animation" id="Animation_lh8ge"]
 resource_name = "shotgun_blast"
 length = 0.4
@@ -29,21 +44,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.169372, 3.12275, 0.0031761), Vector3(-1.22173, 3.1189, 0.0122173), Vector3(-0.169372, 3.12275, 0.0031761)]
-}
-
-[sub_resource type="Animation" id="Animation_j3qty"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.75, -0.375, -0.75)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ltwmy"]

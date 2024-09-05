@@ -1,8 +1,8 @@
 extends CanvasLayer
 signal stat_changed
 # Called when the node enters the scene tree for the first time.
-@onready var player_strength = self.get_parent().get_node("player").strength
-@onready var player_reload_spd = self.get_parent().get_node("player").reload_spd
+@onready var player_strength = self.get_parent().get_node("Player").strength
+@onready var player_reload_spd = self.get_parent().get_node("Player").reload_spd
 
 func _ready():
 	#Get the player stats. Get the equipment stats. Use a formula to calculate the reload
