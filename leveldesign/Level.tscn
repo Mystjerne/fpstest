@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1kxcc4na4yb0"]
+[gd_scene load_steps=12 format=3 uid="uid://c1kxcc4na4yb0"]
 
 [ext_resource type="PackedScene" uid="uid://br01chminlckq" path="res://Player.tscn" id="1_7xctj"]
 [ext_resource type="PackedScene" uid="uid://rcr1bd5815dc" path="res://ui/ui.tscn" id="1_y6gth"]
 [ext_resource type="PackedScene" uid="uid://ck3weatx4ste5" path="res://leveldesign/Platform.tscn" id="2_doeps"]
-[ext_resource type="ArrayMesh" uid="uid://x4gr370fo1qy" path="res://models/knife_sharp.obj" id="3_fftyh"]
-[ext_resource type="ArrayMesh" uid="uid://cc7mgylaegfc7" path="res://models/shotgun.obj" id="4_o5plh"]
+[ext_resource type="PackedScene" uid="uid://bjs3mscn1k1cp" path="res://Skeleton.tscn" id="4_c4kp1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sac6i"]
 sky_top_color = Color(0.0745098, 0.486275, 0.658824, 1)
@@ -61,10 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79957, 7.66016, -1.26396)
 
 [node name="UI" parent="." instance=ExtResource("1_y6gth")]
 
-[node name="player" parent="." instance=ExtResource("1_7xctj")]
+[node name="Player" parent="." instance=ExtResource("1_7xctj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.95639e-05, 0.288727, 8.88906)
 
-[node name="Camera" type="Camera3D" parent="player"]
+[node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0944276, 0.154545, 0.194679)
 current = true
 fov = 100.0
@@ -74,10 +73,6 @@ transform = Transform3D(1, 0, 0, 0, 0.999911, -0.013316, 0, 0.013316, 0.999911, 
 
 [node name="wall" parent="." instance=ExtResource("2_doeps")]
 transform = Transform3D(-0.00313982, 1.26845e-06, -3.05585, 0.224859, -1.25086e-06, -0.0426703, -9.75769e-09, -28.6191, -1.33615e-07, 1.32267, 0.66939, 0.748281)
-metadata/_edit_group_ = true
-
-[node name="wall4" parent="." instance=ExtResource("2_doeps")]
-transform = Transform3D(-0.00313982, 1.26845e-06, -3.05585, 0.224859, -1.25086e-06, -0.0426703, -9.75769e-09, -28.6191, -1.33615e-07, 1.33762, 0.669391, 16.8187)
 metadata/_edit_group_ = true
 
 [node name="wall2" parent="." instance=ExtResource("2_doeps")]
@@ -103,10 +98,10 @@ shadow_opacity = 0.9
 shadow_blur = 0.0
 
 [node name="respawn collision" type="Area3D" parent="."]
-transform = Transform3D(-0.999957, -2.9975e-05, 0.00928442, 0, 0.999995, 0.00322851, -0.00928447, 0.00322837, -0.999952, 0.0372552, 3.18482, 3.69186)
+transform = Transform3D(-0.999957, -2.99751e-05, 0.00928447, 0, 0.999995, 0.00322851, -0.00928451, 0.00322837, -0.999952, 0.0372553, 3.18482, 3.69186)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="respawn collision"]
-transform = Transform3D(10.5247, 1.27329e-11, -3.72529e-09, 2.91038e-11, 0.988295, 5.58794e-09, 2.23517e-08, -2.32831e-09, 4.30843, -2.98023e-08, -14.4009, -4.76837e-07)
+transform = Transform3D(10.5247, 1.09139e-11, -7.45058e-09, 2.91038e-11, 0.988295, 6.51926e-09, 1.49012e-08, -2.56114e-09, 4.30843, 0, -14.4009, -7.15256e-07)
 shape = SubResource("BoxShape3D_lktsm")
 
 [node name="column" type="StaticBody3D" parent="."]
@@ -133,14 +128,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="column2"]
 shape = SubResource("BoxShape3D_at5sp")
 
-[node name="KnifeSharp" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 11.804, -1.69067, 11.3695)
-visible = false
-mesh = ExtResource("3_fftyh")
+[node name="Skeleton" parent="." instance=ExtResource("4_c4kp1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3674, -3.8402, 7.11032)
 
-[node name="Shotgun" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 12.0476, -1.35466, 6.44926)
-visible = false
-mesh = ExtResource("4_o5plh")
-
-[connection signal="body_entered" from="respawn collision" to="player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="respawn collision" to="Player" method="_on_area_3d_body_entered"]
