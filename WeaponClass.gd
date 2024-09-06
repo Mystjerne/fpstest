@@ -7,7 +7,12 @@ class_name Weapon
 
 func _ready():
 	pass # Replace with function body.
+# this function will get the stats as a dictionary
+func get_stats():
+	return {
+		"damage": damage,
+		"reload_speed": reload_spd
+	}
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
