@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://rcr1bd5815dc"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_l8skx"]
-[ext_resource type="Script" path="res://ui/StatLineEdit.gd" id="2_gwo1q"]
+[ext_resource type="Script" path="res://ui/LineEdit.gd" id="2_uugak"]
 [ext_resource type="Script" path="res://CooldownHandler.gd" id="3_nj0kt"]
 [ext_resource type="Texture2D" uid="uid://demcppgtewimp" path="res://ui/icons/Icon29.png" id="4_5t6pj"]
 [ext_resource type="Script" path="res://ui/EquipmentTimer.gd" id="5_xyv76"]
@@ -12,10 +12,16 @@
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_l8skx")
+strength_edit = NodePath("DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit")
+reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit")
+ranged_timer = NodePath("EqBoxContainer/RangedTextureRect/RangedEqTimer")
+consumable_timer = NodePath("EqBoxContainer/PotionTextureRect/PotionTimer")
+melee_timer = NodePath("EqBoxContainer/KnifeTextureRect/KnifeTimer")
+magic_timer = NodePath("EqBoxContainer/MagicTextureRect/MagicTimer")
 
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 247.0
-offset_bottom = 378.0
+offset_bottom = 503.0
 
 [node name="PanelBoxContainer" type="BoxContainer" parent="DebugPanel"]
 layout_mode = 0
@@ -28,59 +34,155 @@ layout_mode = 2
 text = "Player Stats:"
 horizontal_alignment = 1
 
-[node name="StrengthBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+[node name="PlayerStrengthBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StrengthBoxContainer"]
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Strength"
+text = "strength"
 
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StrengthBoxContainer"]
+[node name="StrengthLineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_gwo1q")
+script = ExtResource("2_uugak")
 
-[node name="ReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+[node name="PlayerReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ReloadSpdContainer"]
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Reload_spd"
+text = "reload_spd"
 
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ReloadSpdContainer"]
+[node name="ReloadSpdLineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "90"
+script = ExtResource("2_uugak")
 
-[node name="CurrentStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+[node name="RangedWeaponStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
-text = "Current Weapon Stats:"
+text = "Ranged Weapon Stats:"
 horizontal_alignment = 1
 
-[node name="WeaponDmgBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+[node name="RangedWeaponDmgBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/WeaponDmgBoxContainer"]
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Weapon_dmg"
+text = "weapon_dmg"
 
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/WeaponDmgBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
 
-[node name="RangeContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+[node name="RangedReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/RangeContainer"]
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Range"
+text = "reload_spd
+"
 
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/RangeContainer"]
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="MeleeWeaponStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+text = "Melee Weapon Stats:"
+horizontal_alignment = 1
+
+[node name="MeleeDmgBoxContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "weapon_dmg
+"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="MeleeReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "reload_spd"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="ConsumableStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+text = "Consumable Stats:"
+horizontal_alignment = 1
+
+[node name="ConsumableReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "reload_spd"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="ConsumableSpdMultContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ConsumableSpdMultContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "spd_multiplier"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ConsumableSpdMultContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="StaffStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+text = "Staff Stats:"
+horizontal_alignment = 1
+
+[node name="StaffSpdMultContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StaffSpdMultContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "weapon_dmg
+"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StaffSpdMultContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+
+[node name="StaffReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "reload_spd"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
@@ -192,6 +294,7 @@ text = "5"
 script = ExtResource("5_xyv76")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
 offset_right = 11520.0
 offset_bottom = 6480.0
 scale = Vector2(0.1, 0.1)
@@ -202,9 +305,11 @@ size_flags_vertical = 4
 layout_mode = 2
 texture = ExtResource("7_2v1cc")
 
-[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" method="_on_strength_edit_text_changed"]
-[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StrengthBoxContainer/LineEdit" to="." method="_on_strength_edit_submitted"]
-[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ReloadSpdContainer/LineEdit" to="." method="_on_player_reloadspd_edit_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_strength_edit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="." method="_on_strength_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" method="_on_reloadspd_edit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="." method="_on_player_reloadspd_edit_submitted"]
 [connection signal="timeout" from="EqBoxContainer/RangedTextureRect/RangedEqTimer" to="EqBoxContainer/RangedTextureRect/RangedEqTimer" method="_on_timeout"]
 [connection signal="timeout" from="EqBoxContainer/PotionTextureRect/PotionTimer" to="EqBoxContainer/PotionTextureRect/PotionTimer" method="_on_timeout"]
 [connection signal="timeout" from="EqBoxContainer/KnifeTextureRect/KnifeTimer" to="EqBoxContainer/KnifeTextureRect/KnifeTimer" method="_on_timeout"]

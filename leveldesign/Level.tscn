@@ -58,15 +58,15 @@ roughness = 0.0
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79957, 7.66016, -1.26396)
 
-[node name="UI" parent="." instance=ExtResource("1_y6gth")]
-
 [node name="Player" parent="." instance=ExtResource("1_7xctj")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.95639e-05, 0.288727, 8.88906)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.00003, 0.288727, 8.88906)
 
 [node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0944276, 0.154545, 0.194679)
 current = true
 fov = 100.0
+
+[node name="UI" parent="." instance=ExtResource("1_y6gth")]
 
 [node name="ground" parent="." instance=ExtResource("2_doeps")]
 transform = Transform3D(1, 0, 0, 0, 0.999911, -0.013316, 0, 0.013316, 0.999911, 1.10963, -4.15891, 8.62519)
