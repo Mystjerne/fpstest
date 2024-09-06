@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvct05xuyek4y" path="res://Knife.tscn" id="2_2drel"]
 [ext_resource type="PackedScene" uid="uid://c8470h063t1aw" path="res://shotgun.tscn" id="3_2xoqu"]
 [ext_resource type="PackedScene" uid="uid://q3j2u7o87yut" path="res://meat.tscn" id="4_fshqb"]
-[ext_resource type="ArrayMesh" uid="uid://d4bncmgspbfom" path="res://models/Staff00_mesh.obj" id="5_souqq"]
+[ext_resource type="PackedScene" uid="uid://c1mt357rak5ui" path="res://staff.tscn" id="5_vr75d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ua1y4"]
 
@@ -36,10 +36,10 @@ mesh = SubResource("SphereMesh_14022")
 transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -0.626601)
 
 [node name="Shotgun" parent="." instance=ExtResource("3_2xoqu")]
-transform = Transform3D(-19.9965, -8.79168e-06, 0.371438, 0.0626128, 19.7137, 3.37127, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9964, -8.47968e-06, 0.371438, 0.0626127, 19.7137, 3.37127, -0.366119, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 
 [node name="Meat" parent="." instance=ExtResource("4_fshqb")]
+transform = Transform3D(1, 0, 0, 0, -0.0195988, -0.999808, 0, 0.999808, -0.0195988, 0.684, 0.13, -0.581)
 
-[node name="Staff00Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50967, -0.932028, -7.27127)
-mesh = ExtResource("5_souqq")
+[node name="Staff" parent="." instance=ExtResource("5_vr75d")]
+transform = Transform3D(-0.000162329, -0.000165926, 0.0499996, -0.000532588, 0.0499969, 0.000164189, -0.0499969, -0.00053205, -0.000164087, 0.714901, -1.17362, -0.538502)

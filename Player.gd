@@ -3,20 +3,47 @@ extends CharacterBody3D
 const JUMP_VELOCITY = 4.5
 @export var sensivity = 0.3
 
-@export var strength = 90
-@export var reload_spd = 1
+@export var strength = 90:
+	set = set_strength
+@export var reload_spd = 1:
+	set = set_reload_spd
 
 @onready var knife = $Knife
 @onready var shotgun = $Shotgun
 @onready var meat = $Meat
+@onready var staff = $Staff
+@onready var equipment_types = {"ranged" : shotgun, "consumable" : meat , "melee" : knife, "magic": staff}
+@onready var ui = get_parent().get_node("UI")
 
-#var equipment_types = {"ranged" : knife, "potion" : meat , "melee" : knife, "magic"}
-
+var current_equipment_focus = "ranged"
+ 
 var fov = false
-var lerp_speed= 1
+var lerp_speed = 1
 
+func set_reload_spd(value):
+	reload_spd = value
+	print("Reload_spd has been changed to: ", reload_spd)
 
+func set_strength(value):
+	strength = value
+	ui.player_strength = strength
+	print("Strength has been changed to: ", strength)
+
+func get_character_and_weapon_stats():
+	var stats = {}
+	for type in equipment_types:
+		var weapon = equipment_types[type]
+		if weapon.has_method("get_stats"):
+			stats[type] = weapon.get_stats()
+		else:
+			stats[type] = {}
+	stats["player"] = {"strength": strength, "reload_spd": reload_spd}
+	return stats
+	
 func _ready():
+	print(get_character_and_weapon_stats())
+	change_equipment()
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -37,8 +64,33 @@ func _input(event):
 		$Camera.rotation_degrees.x -= event.relative.y * sensivity
 		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -90, 90)
 		rotation_degrees.y -= event.relative.x * sensivity
-	
-	
+		
+	if Input.is_action_just_pressed("1"):
+		current_equipment_focus = "ranged"
+		change_equipment()
+		
+	if Input.is_action_just_pressed("2"):
+		current_equipment_focus = "consumable"
+		change_equipment()
+
+	if Input.is_action_just_pressed("3"):
+		current_equipment_focus = "melee"
+		change_equipment()
+
+	if Input.is_action_just_pressed("4"):
+		current_equipment_focus = "magic"
+		change_equipment()
+
+
+func change_equipment():
+	for key in equipment_types.keys():
+			if key == current_equipment_focus:
+				equipment_types[key].enable(true)
+			else:
+				equipment_types[key].enable(false)
+
+func increase_strength(increase_in_strength):
+	strength += increase_in_strength
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -73,5 +125,3 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body):
 	if body.name=="Player":
 		get_tree().change_scene_to_file("res://leveldesign/Level.tscn")
-
-	pass # Replace with function body.

@@ -10,8 +10,6 @@ func _ready():
 	health_label.text = "HP: " + str(health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 # Setter function for health property
 func set_health(value):

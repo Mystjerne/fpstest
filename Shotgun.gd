@@ -5,13 +5,13 @@ extends Weapon
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	damage = 1
-	pass # Replace with function body.
+	reload_spd = 2
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enable(is_enabled:bool):
+	self.visible = is_enabled
+	shotgun_raycast.enabled = is_enabled
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("mouse_left"):
 		animation_player.play("shotgun_blast")
 		if shotgun_raycast.is_colliding():

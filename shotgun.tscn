@@ -53,7 +53,7 @@ _data = {
 }
 
 [node name="Shotgun" type="MeshInstance3D"]
-transform = Transform3D(-19.9965, -8.77305e-06, 0.371437, 0.0626128, 19.7137, 3.37126, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9965, -8.82893e-06, 0.371437, 0.0626128, 19.7137, 3.37127, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 mesh = ExtResource("1_xciy7")
 script = ExtResource("2_lfb0t")
 

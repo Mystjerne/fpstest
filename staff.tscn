@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1mt357rak5ui"]
+
+[ext_resource type="ArrayMesh" uid="uid://d4bncmgspbfom" path="res://models/Staff00_mesh.obj" id="1_06cq4"]
+[ext_resource type="Script" path="res://staff.gd" id="2_32i72"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kxfmf"]
+
+[sub_resource type="Animation" id="Animation_7t3au"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.714901, -1.17362, -0.538502)]
+}
+
+[sub_resource type="Animation" id="Animation_8irvd"]
+resource_name = "staff_slam"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(1, 1, 1), Vector3(0.01, 0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.714901, -1.17362, -0.538502), Vector3(0.714901, 0.0273288, -0.538502), Vector3(0.714901, -1.17362, -0.538502)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0aa1"]
+_data = {
+"RESET": SubResource("Animation_7t3au"),
+"staff_slam": SubResource("Animation_8irvd")
+}
+
+[node name="Staff" type="MeshInstance3D"]
+transform = Transform3D(-0.000162425, -0.000165927, 0.0499995, -0.000532587, 0.0499969, 0.000164189, -0.0499969, -0.000532048, -0.000164182, 0.714901, -1.17362, -0.538502)
+mesh = ExtResource("1_06cq4")
+script = ExtResource("2_32i72")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, -1.86265e-09, -6.98492e-10, 1.86265e-09, 1, -1.61162e-09, 6.98492e-10, 1.61162e-09, 1, -0.251525, 23.612, 0.0775414)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(227.081, 7.79339e-08, -4.66136e-07, -7.07892e-07, 25, -8.15077e-07, 4.71928e-07, 9.08492e-08, 224.294, 0, 0, 0)
+shape = SubResource("SphereShape3D_kxfmf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e0aa1")
+}
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
