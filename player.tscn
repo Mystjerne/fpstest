@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://br01chminlckq"]
+[gd_scene load_steps=8 format=3 uid="uid://br01chminlckq"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_502fm"]
 [ext_resource type="PackedScene" uid="uid://bvct05xuyek4y" path="res://Knife.tscn" id="2_2drel"]
@@ -9,8 +9,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ua1y4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6fx42"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_14022"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.932028, 0)
@@ -24,19 +22,11 @@ shape = SubResource("CapsuleShape3D_ua1y4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0532225, -0.230096, 0.115496)
 mesh = SubResource("CapsuleMesh_6fx42")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Capsule3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.15, 0.5, -0.5)
-mesh = SubResource("SphereMesh_14022")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Capsule3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.15, 0.5, -0.5)
-mesh = SubResource("SphereMesh_14022")
-
 [node name="Knife" parent="." instance=ExtResource("2_2drel")]
 transform = Transform3D(-19.9966, -2.78891e-07, 0.371387, -0.361665, 4.54628, -19.4731, -0.0844214, -19.4764, -4.5455, 0.75, -0.375, -0.626601)
 
 [node name="Shotgun" parent="." instance=ExtResource("3_2xoqu")]
-transform = Transform3D(-19.9964, -8.59144e-06, 0.371438, 0.0626127, 19.7137, 3.37127, -0.366119, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9964, -8.54488e-06, 0.371438, 0.0626127, 19.7137, 3.37127, -0.366119, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 
 [node name="Meat" parent="." instance=ExtResource("4_fshqb")]
 transform = Transform3D(1, 0, 0, 0, -0.0195988, -0.999808, 0, 0.999808, -0.0195988, 0.684, 0.13, -0.581)

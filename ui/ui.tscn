@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rcr1bd5815dc"]
+[gd_scene load_steps=9 format=3 uid="uid://rcr1bd5815dc"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_l8skx"]
 [ext_resource type="Script" path="res://ui/LineEdit.gd" id="2_uugak"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://demcppgtewimp" path="res://ui/icons/Icon29.png" id="4_5t6pj"]
 [ext_resource type="Script" path="res://ui/EquipmentTimer.gd" id="5_xyv76"]
 [ext_resource type="Texture2D" uid="uid://v2odbyoo484o" path="res://ui/icons/Icon38.png" id="6_p544n"]
-[ext_resource type="Texture2D" uid="uid://dko6yiihpmg3p" path="res://ui/icons/crosshair.256x256.png" id="7_2v1cc"]
 [ext_resource type="Texture2D" uid="uid://b6xlq88tb3j2a" path="res://ui/icons/Knife00_icon.png" id="7_cl1sc"]
 [ext_resource type="Texture2D" uid="uid://b4tn1gh1sd2bm" path="res://ui/icons/Staff00_icon.png" id="8_mcvcs"]
 
@@ -26,6 +25,10 @@ ranged_timer = NodePath("EqBoxContainer/RangedTextureRect/RangedEqTimer")
 consumable_timer = NodePath("EqBoxContainer/PotionTextureRect/PotionTimer")
 melee_timer = NodePath("EqBoxContainer/KnifeTextureRect/KnifeTimer")
 magic_timer = NodePath("EqBoxContainer/MagicTextureRect/MagicTimer")
+consumable_cooldown_label = NodePath("EqBoxContainer/PotionTextureRect/PotionCooldownLabel")
+magic_cooldown_label = NodePath("EqBoxContainer/MagicTextureRect/MagicCooldownLabel")
+ranged_cooldown_label = NodePath("EqBoxContainer/RangedTextureRect/RangedCooldownLabel")
+melee_cooldown_label = NodePath("EqBoxContainer/KnifeTextureRect/KnifeCooldownLabel")
 
 [node name="DebugPanel" type="Panel" parent="."]
 offset_right = 247.0
@@ -236,7 +239,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "5"
 
 [node name="RangedEqTimer" type="Timer" parent="EqBoxContainer/RangedTextureRect"]
 script = ExtResource("5_xyv76")
@@ -259,7 +261,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "5"
 
 [node name="PotionTimer" type="Timer" parent="EqBoxContainer/PotionTextureRect"]
 script = ExtResource("5_xyv76")
@@ -282,7 +283,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "5"
 
 [node name="KnifeTimer" type="Timer" parent="EqBoxContainer/KnifeTextureRect"]
 script = ExtResource("5_xyv76")
@@ -305,22 +305,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "5"
 
 [node name="MagicTimer" type="Timer" parent="EqBoxContainer/MagicTextureRect"]
 script = ExtResource("5_xyv76")
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-visible = false
-offset_right = 11520.0
-offset_bottom = 6480.0
-scale = Vector2(0.1, 0.1)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-layout_mode = 2
-texture = ExtResource("7_2v1cc")
 
 [connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_lineedit_text_changed"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="." method="_on_strength_edit_submitted"]
@@ -352,7 +339,15 @@ texture = ExtResource("7_2v1cc")
 [connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" method="_on_lineedit_text_changed"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="." method="_on_magiceq_reloadspd_edit_submitted"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="countdown_finished" from="EqBoxContainer/RangedTextureRect/RangedEqTimer" to="." method="_on_ranged_eq_timer_countdown_finished"]
 [connection signal="timeout" from="EqBoxContainer/RangedTextureRect/RangedEqTimer" to="EqBoxContainer/RangedTextureRect/RangedEqTimer" method="_on_timeout"]
+[connection signal="timer_tick" from="EqBoxContainer/RangedTextureRect/RangedEqTimer" to="." method="_on_ranged_eq_timer_timer_tick"]
+[connection signal="countdown_finished" from="EqBoxContainer/PotionTextureRect/PotionTimer" to="." method="_on_potion_timer_countdown_finished"]
 [connection signal="timeout" from="EqBoxContainer/PotionTextureRect/PotionTimer" to="EqBoxContainer/PotionTextureRect/PotionTimer" method="_on_timeout"]
+[connection signal="timer_tick" from="EqBoxContainer/PotionTextureRect/PotionTimer" to="." method="_on_potion_timer_timer_tick"]
+[connection signal="countdown_finished" from="EqBoxContainer/KnifeTextureRect/KnifeTimer" to="." method="_on_knife_timer_countdown_finished"]
 [connection signal="timeout" from="EqBoxContainer/KnifeTextureRect/KnifeTimer" to="EqBoxContainer/KnifeTextureRect/KnifeTimer" method="_on_timeout"]
+[connection signal="timer_tick" from="EqBoxContainer/KnifeTextureRect/KnifeTimer" to="." method="_on_knife_timer_timer_tick"]
+[connection signal="countdown_finished" from="EqBoxContainer/MagicTextureRect/MagicTimer" to="." method="_on_magic_timer_countdown_finished"]
 [connection signal="timeout" from="EqBoxContainer/MagicTextureRect/MagicTimer" to="EqBoxContainer/MagicTextureRect/MagicTimer" method="_on_timeout"]
+[connection signal="timer_tick" from="EqBoxContainer/MagicTextureRect/MagicTimer" to="." method="_on_magic_timer_timer_tick"]

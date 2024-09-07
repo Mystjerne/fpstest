@@ -53,12 +53,9 @@ _data = {
 }
 
 [node name="Shotgun" type="MeshInstance3D"]
-transform = Transform3D(-19.9965, -8.82893e-06, 0.371437, 0.0626128, 19.7137, 3.37127, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+transform = Transform3D(-19.9965, -8.81496e-06, 0.371437, 0.0626128, 19.7137, 3.37127, -0.366121, 3.37185, -19.7103, 0.75, -0.375, -0.75)
 mesh = ExtResource("1_xciy7")
 script = ExtResource("2_lfb0t")
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 3.0268e-09, -3.72529e-09, 9.31323e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0.000907462, 0.00706667, 0.0457887)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -66,4 +63,4 @@ libraries = {
 }
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(0.361221, -0.0122029, -0.00740769, 0.00670864, -0.0179065, 0.388135, -0.00689243, -0.656964, -0.0104414, 0.000887204, 0.00842689, 0.0477631)
+transform = Transform3D(1.37781, -0.134433, -0.0218637, 0.0255888, -0.197267, 1.14557, -0.0262898, -7.23743, -0.0308176, 0.000887204, 0.00842688, 0.0477631)

@@ -81,7 +81,9 @@ func _input(event):
 	if Input.is_action_just_pressed("4"):
 		current_equipment_focus = "magic"
 		change_equipment()
-
+	
+	if Input.is_action_just_pressed("q"):
+		get_tree().quit()
 
 func change_equipment():
 	for key in equipment_types.keys():

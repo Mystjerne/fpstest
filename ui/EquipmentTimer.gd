@@ -3,15 +3,17 @@ signal timer_tick
 signal countdown_finished 
 
 #need to calculate total time in respect to the player's reload spd
-@export var total_time: int = 10
-var time_remaining: int = total_time
+var total_time : int
+var time_remaining: int
 
 func _ready():
-	self.start(1.0)
+	pass
+	#self.start(1.0)
 
 func _on_timeout():
 	# Decrease the remaining time by 1
-	time_remaining -= 1  
+	time_remaining -= 1
+	print("time_remaining:", time_remaining)
 	emit_signal("timer_tick", time_remaining)  # Emit the custom signal with the remaining time
 	
 	#print("Time remaining: ", time_remaining)
@@ -20,10 +22,10 @@ func _on_timeout():
 		self.stop()
 		emit_signal("countdown_finished")
 
-func start_countdown(seconds: int):
-	total_time = seconds
+func start_countdown():
 	time_remaining = total_time
 	self.start(1.0)
+	print("self:", self)
 
 func stop_countdown():
 	self.stop()
