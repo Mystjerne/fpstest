@@ -3,11 +3,7 @@ extends LineEdit
 
 var previous_valid_text = ""
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-	#self.text = str(player_stat)
-
-func _on_reloadspd_edit_text_changed(new_text):
+func _on_lineedit_text_changed(new_text):
 	# Only allow integers as input.
 	if new_text.is_valid_int() or new_text.is_valid_float():
 		previous_valid_text = new_text
@@ -15,7 +11,10 @@ func _on_reloadspd_edit_text_changed(new_text):
 		
 	else:
 		self.text = previous_valid_text
-		
+		 
+func _on_text_submitted(new_text):
+	print("_on_text_submitted was called")
+	self.deselect()
 
 func is_valid_float(input_text: String) -> bool:
 	# Allow negative sign, decimal point, and numeric values
@@ -28,7 +27,3 @@ func is_valid_float(input_text: String) -> bool:
 	# Try to convert to a float, and check if it's a valid number
 	var converted = input_text.to_float()
 	return str(converted) == input_text or input_text == "0" or input_text == "-0"
-
-func _on_text_submitted(new_text):
-	print("_on_text_submitted was called")
-	self.deselect()

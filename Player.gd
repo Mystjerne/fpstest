@@ -22,12 +22,13 @@ var lerp_speed = 1
 
 func set_reload_spd(value):
 	reload_spd = value
-	print("Reload_spd has been changed to: ", reload_spd)
+	ui.player_reload_spd = reload_spd
+	print("player Reload_spd has been changed to: ", reload_spd)
 
 func set_strength(value):
 	strength = value
 	ui.player_strength = strength
-	print("Strength has been changed to: ", strength)
+	print("player Strength has been changed to: ", strength)
 
 func get_character_and_weapon_stats():
 	var stats = {}

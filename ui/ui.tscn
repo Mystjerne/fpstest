@@ -14,6 +14,14 @@
 script = ExtResource("1_l8skx")
 strength_edit = NodePath("DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit")
 reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit")
+melee_strength_edit = NodePath("DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer/LineEdit")
+melee_reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit")
+ranged_strength_edit = NodePath("DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit")
+ranged_reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit")
+magic_strength_edit = NodePath("DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit")
+magic_reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit")
+consumable_strength_increase_edit = NodePath("DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit")
+consumable_reload_speed_edit = NodePath("DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit")
 ranged_timer = NodePath("EqBoxContainer/RangedTextureRect/RangedEqTimer")
 consumable_timer = NodePath("EqBoxContainer/PotionTextureRect/PotionTimer")
 melee_timer = NodePath("EqBoxContainer/KnifeTextureRect/KnifeTimer")
@@ -77,6 +85,7 @@ text = "weapon_dmg"
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="RangedReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -91,6 +100,7 @@ text = "reload_spd
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="MeleeWeaponStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -110,6 +120,7 @@ text = "weapon_dmg
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="MeleeReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -123,11 +134,26 @@ text = "reload_spd"
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="ConsumableStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 text = "Consumable Stats:"
 horizontal_alignment = 1
+
+[node name="ConsumableStrBuffContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "strength buff"
+
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="ConsumableReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -135,44 +161,34 @@ layout_mode = 2
 [node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "reload_spd"
+text = "reload_spd
+"
 
 [node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
-
-[node name="ConsumableSpdMultContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/ConsumableSpdMultContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "spd_multiplier"
-
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/ConsumableSpdMultContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="StaffStatsLabel" type="Label" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 text = "Staff Stats:"
 horizontal_alignment = 1
 
-[node name="StaffSpdMultContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
+[node name="StaffStrengthContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StaffSpdMultContainer"]
+[node name="Label" type="Label" parent="DebugPanel/PanelBoxContainer/StaffStrengthContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "weapon_dmg
 "
 
-[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StaffSpdMultContainer"]
+[node name="LineEdit" type="LineEdit" parent="DebugPanel/PanelBoxContainer/StaffStrengthContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="StaffReloadSpdContainer" type="BoxContainer" parent="DebugPanel/PanelBoxContainer"]
 layout_mode = 2
@@ -186,6 +202,7 @@ text = "reload_spd"
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "90"
+script = ExtResource("2_uugak")
 
 [node name="EqBoxContainer" type="BoxContainer" parent="."]
 anchors_preset = 7
@@ -305,11 +322,36 @@ size_flags_vertical = 4
 layout_mode = 2
 texture = ExtResource("7_2v1cc")
 
-[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_strength_edit_text_changed"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_lineedit_text_changed"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="." method="_on_strength_edit_submitted"]
 [connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" to="DebugPanel/PanelBoxContainer/PlayerStrengthBoxContainer/StrengthLineEdit" method="_on_text_submitted"]
-[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" method="_on_reloadspd_edit_text_changed"]
-[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="." method="_on_player_reloadspd_edit_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="." method="_on_reloadspd_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" to="DebugPanel/PanelBoxContainer/PlayerReloadSpdContainer/ReloadSpdLineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit" to="." method="_on_rangedeq_str_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/RangedWeaponDmgBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit" to="." method="_on_rangedeq_reloadspd_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/RangedReloadSpdContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer/LineEdit" to="." method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer/LineEdit" to="." method="_on_meleeeq_str_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer/LineEdit" to="DebugPanel/PanelBoxContainer/MeleeDmgBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit" to="." method="_on_meleeeq_reloadspd_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/MeleeReloadSpdContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit" to="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit" to="." method="_on_consumableeq_str_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit" to="DebugPanel/PanelBoxContainer/ConsumableStrBuffContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit" to="." method="_on_consumableeq_reloadspd_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/ConsumableReloadSpdContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit" to="." method="_on_magiceq_str_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffStrengthContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="text_changed" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" method="_on_lineedit_text_changed"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="." method="_on_magiceq_reloadspd_edit_submitted"]
+[connection signal="text_submitted" from="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" to="DebugPanel/PanelBoxContainer/StaffReloadSpdContainer/LineEdit" method="_on_text_submitted"]
 [connection signal="timeout" from="EqBoxContainer/RangedTextureRect/RangedEqTimer" to="EqBoxContainer/RangedTextureRect/RangedEqTimer" method="_on_timeout"]
 [connection signal="timeout" from="EqBoxContainer/PotionTextureRect/PotionTimer" to="EqBoxContainer/PotionTextureRect/PotionTimer" method="_on_timeout"]
 [connection signal="timeout" from="EqBoxContainer/KnifeTextureRect/KnifeTimer" to="EqBoxContainer/KnifeTextureRect/KnifeTimer" method="_on_timeout"]
