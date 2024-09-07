@@ -3,6 +3,7 @@ Instructions for Use:
 Access the Debug Menu
 
 Location: The debug menu is located on the left side of the screen, allowing you to change equipment and player stats.
+
 Mouse Cursor: Press the ` key (or ~) to free the mouse cursor and interact with the debug menu. Press it again to hide the mouse cursor.
 
 Movement: Use the arrow keys to move around. Press Space to jump.
