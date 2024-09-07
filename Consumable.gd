@@ -1,6 +1,7 @@
 extends MeshInstance3D
 @onready var animation_player = $AnimationPlayer
 @export var strength_increase: float = 0.1
+@export var reload_spd = 5
 
 func _ready():
 	pass # Replace with function body.
@@ -23,5 +24,6 @@ func increase_player_damage():
 
 func get_stats():
 	return {
-		"strength_increase": strength_increase
-	}
+		"strength_increase": strength_increase,
+		"reload_spd": reload_spd
+		}
