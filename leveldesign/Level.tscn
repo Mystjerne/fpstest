@@ -61,6 +61,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79957, 7.66016, -1.26396)
 [node name="Player" parent="." instance=ExtResource("1_7xctj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.00003, 0.288727, 8.88906)
 
+[node name="Shotgun" parent="Player" index="3"]
+transform = Transform3D(-19.9964, -8.55419e-06, 0.371438, 0.0626127, 19.7137, 3.37127, -0.366119, 3.37185, -19.7103, 0.75, -0.375, -0.75)
+
 [node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0944276, 0.154545, 0.194679)
 current = true
@@ -131,4 +134,11 @@ shape = SubResource("BoxShape3D_at5sp")
 [node name="Skeleton" parent="." instance=ExtResource("4_c4kp1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3674, -3.8402, 7.11032)
 
+[connection signal="start_cooldown" from="Player/Knife" to="UI" method="_on_knife_start_cooldown"]
+[connection signal="start_cooldown" from="Player/Shotgun" to="UI" method="_on_shotgun_start_cooldown"]
+[connection signal="start_cooldown" from="Player/Meat" to="UI" method="_on_meat_start_cooldown"]
+[connection signal="start_cooldown" from="Player/Staff" to="UI" method="_on_staff_start_cooldown"]
 [connection signal="body_entered" from="respawn collision" to="Player" method="_on_area_3d_body_entered"]
+
+[editable path="Player"]
+[editable path="UI"]

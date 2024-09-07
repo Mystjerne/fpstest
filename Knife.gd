@@ -2,6 +2,8 @@ extends Weapon
 
 @onready var animation_player = $AnimationPlayer
 @onready var knife_area3d = $Area3D
+var cooldown_finished = true
+signal start_cooldown 
 
 func _ready():
 	damage = 1
@@ -12,8 +14,9 @@ func enable(is_enabled:bool):
 	knife_area3d.monitoring = is_enabled
 
 func _input(_event):
-	if Input.is_action_just_pressed("mouse_left"):
+	if Input.is_action_just_pressed("mouse_left") and cooldown_finished and self.visible:
 		animation_player.play("stab")
+		emit_signal("start_cooldown")
 
 func _on_area_3d_body_entered(body):
 	if body.name == "Skeleton":
