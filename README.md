@@ -20,7 +20,7 @@ Knife: A melee weapon requiring close proximity to the enemy to inflict damage.
 
 Staff: A mid-range magic weapon that casts an area-of-effect spell, dealing damage to all enemies within its range.
 
-Gun: A long-range weapon for shooting enemies from a distance, which may be challenging to aim.
+Gun: A long-range weapon for shooting enemies from a distance. Difficult to aim!
 
 Meat: A consumable item that increases the player’s strength, boosting the damage dealt to enemies.
 
